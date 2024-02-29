@@ -19,6 +19,7 @@ class DoorFragment : Fragment() {
         DoorModel("Door 1","https://i.kinja-img.com/image/upload/c_fit,q_60,w_645/opgj43no5dqhgafhypuk.jpg"),
         DoorModel("Door 1","https://i.kinja-img.com/image/upload/c_fit,q_60,w_645/opgj43no5dqhgafhypuk.jpg"),
     )
+
     private val adapter = DoorAdapter(doorList)
 
 
