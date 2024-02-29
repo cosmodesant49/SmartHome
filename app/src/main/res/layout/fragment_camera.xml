@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ui.camera_activity.CameraActivity">
+
+    <TextView
+        android:id="@+id/gostinaya_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Гостинная"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="21dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCamera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_camera"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+</LinearLayout>
