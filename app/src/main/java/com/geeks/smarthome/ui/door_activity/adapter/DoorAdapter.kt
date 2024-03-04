@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.geeks.smarthome.databinding.ItemDoorBinding
-import com.geeks.smarthome.model.DoorModel
+import com.geeks.smarthome.model.door.DoorModel
 
 class DoorAdapter(private var list: ArrayList<DoorModel>) : RecyclerView.Adapter<DoorAdapter.RecuclerViewHolder>() {
 
@@ -26,8 +26,8 @@ class DoorAdapter(private var list: ArrayList<DoorModel>) : RecyclerView.Adapter
     class RecuclerViewHolder(private var binding: ItemDoorBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(itemModel: DoorModel) = with(binding) {
-            doorIv.load(itemModel.image)
-            doorNameTv.text = itemModel.doorName
+       /*     doorIv.load(itemModel.image)
+            doorNameTv.text = itemModel.doorName*/
             doorNameTv.setOnClickListener {
                 if (binding.doorIv.visibility == View.GONE) {
                     slideOutViews(binding.doorIv)

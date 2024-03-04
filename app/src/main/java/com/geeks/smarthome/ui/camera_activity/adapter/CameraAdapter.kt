@@ -3,10 +3,12 @@ package com.geeks.smarthome.ui.camera_activity.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.geeks.smarthome.databinding.ItemCameraBinding
-import com.geeks.smarthome.model.CameraModel
+import com.geeks.smarthome.model.camera.Camera
+import com.geeks.smarthome.model.camera.CameraModel
 
-class CameraAdapter(private val dataList: List<CameraModel>) :
+class CameraAdapter(private val dataList: CameraModel?) :
     RecyclerView.Adapter<CameraAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -16,20 +18,28 @@ class CameraAdapter(private val dataList: List<CameraModel>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val cameraModel = dataList[position]
-        holder.bind(cameraModel)
+        dataList?.let { data ->
+            val camera = data.data.cameras.firstOrNull()
+            camera?.let { holder.bind(it) }
+        }
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return if (dataList != null) {
+            dataList.data.cameras.size
+        } else {
+            0
+        }
     }
 
     inner class ViewHolder(private val binding: ItemCameraBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(cameraModel: CameraModel) {
-            binding.cameraTv.text = cameraModel.cameraName
-
+        fun bind(camera: Camera) {
+            binding.cameraTv.text = camera.name
+            Glide.with(binding.root)
+                .load(camera.snapshot)
+                .into(binding.videoIv)
         }
     }
 }
