@@ -5,16 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ui.camera_activity.CameraActivity">
-
-    <TextView
-        android:id="@+id/gostinaya_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Гостинная"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="21dp"/>
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCamera"

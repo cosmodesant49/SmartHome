@@ -1,4 +1,4 @@
-package com.geeks.smarthome.api
+package com.geeks.smarthome.data.api
 
 import com.geeks.smarthome.model.camera.CameraModel
 import com.geeks.smarthome.model.door.DoorModel

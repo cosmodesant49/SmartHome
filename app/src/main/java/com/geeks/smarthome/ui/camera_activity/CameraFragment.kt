@@ -1,49 +1,78 @@
 package com.geeks.smarthome.ui.camera_activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.viewModels
+import com.geeks.smarthome.app.App
+import com.geeks.smarthome.base.BaseFragment
 import com.geeks.smarthome.databinding.FragmentCameraBinding
-import com.geeks.smarthome.repository.Repository
-import com.geeks.smarthome.ui.camera_activity.adapter.CameraAdapter
+import com.geeks.smarthome.model.camera.CameraEntity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import mbk.io.sabrina_hm1_m7.ui.camera.adapter.CameraAdapter
 
-class CameraFragment : Fragment() {
-    private var _binding: FragmentCameraBinding? = null
-    private val binding get() = _binding!!
-
-    private lateinit var cameraAdapter: CameraAdapter
-    private val repository = Repository() // Создание экземпляра репозитория
+@AndroidEntryPoint
+class CameraFragment : BaseFragment() {
+    private lateinit var binding: FragmentCameraBinding
+    private val viewModel: CameraViewModel by viewModels()
+    private val adapter = CameraAdapter(false)
+    private var list: List<CameraEntity> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCameraBinding.inflate(inflater, container, false)
+        binding = FragmentCameraBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        lifecycleScope.launch {
-            val cameras = repository.fetchCameras() // Вызов метода на экземпляре репозитория
-            if (cameras != null) {
-                cameraAdapter = CameraAdapter(cameras)
-                binding.rvCamera.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvCamera.adapter = cameraAdapter
-            } else {
-                // Обработка ошибки загрузки данных
+        binding.rvCamera.adapter = adapter
+        CoroutineScope(Dispatchers.IO).launch {
+            list = App.db.cameraDao().getAll()
+            withContext(Dispatchers.Main) {
+                if (list.isEmpty()) {
+                    getData()
+                } else {
+                    adapter.submitList(list)
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    fun getData() {
+        viewModel.getCameras().stateHandler(
+            success = { it ->
+                val list = it.data.cameras
+                Log.e("ololo", "List of cameraModels: ${list.toString()}")
+                CoroutineScope(Dispatchers.IO).launch {
+                    App.db.cameraDao().clearAll()
+                    list.forEach {
+                        val camera = CameraEntity(
+                            favorites = it.favorites,
+                            name = it.name,
+                            rec = it.rec,
+                            room = it.room,
+                            snapshot = it.snapshot
+                        )
+                        Log.e("ololo", "camera : ${camera.toString()}")
+                        App.db.cameraDao().insertCamera(camera)
+                    }
+                    withContext(Dispatchers.Main) {
+                        val listDB = App.db.cameraDao().getAll()
+                        Log.e("ololo", "List of cameraEntiies: ${listDB.toString()}")
+                        adapter.submitList(listDB)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        )
     }
 }

@@ -6,7 +6,9 @@ import com.geeks.smarthome.databinding.ActivityMainBinding
 import com.geeks.smarthome.ui.camera_activity.CameraFragment
 import com.geeks.smarthome.ui.door_activity.DoorFragment
 import com.geeks.smarthome.ui.main_activity.adapter.ViewPagerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
