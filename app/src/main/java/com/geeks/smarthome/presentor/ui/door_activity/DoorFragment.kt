@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.geeks.smarthome.app.App
-import com.geeks.smarthome.base.BaseFragment
+import com.geeks.smarthome.domain.app.App
+import com.geeks.smarthome.domain.base.BaseFragment
 import com.geeks.smarthome.databinding.FragmentDoorBinding
 import com.geeks.smarthome.data.model.door.DoorEntity
 import com.geeks.smarthome.data.model.door.DoorModel

@@ -1,4 +1,4 @@
-package com.geeks.smarthome.app
+package com.geeks.smarthome.domain.app
 
 import android.app.Application
 import androidx.room.Room

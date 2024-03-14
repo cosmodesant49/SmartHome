@@ -1,4 +1,4 @@
-package com.geeks.smarthome.base
+package com.geeks.smarthome.domain.base
 
 import android.util.Log
 import android.widget.Toast

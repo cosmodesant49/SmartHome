@@ -1,4 +1,4 @@
-package com.geeks.smarthome.di
+package com.geeks.smarthome.domain.di
 
 import com.geeks.smarthome.data.api.AppApiService
 import dagger.Module
@@ -44,7 +44,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideLogginInterseptor(): HttpLoggingInterceptor {
+    fun provideLoginInterseptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor

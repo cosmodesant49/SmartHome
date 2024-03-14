@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.geeks.smarthome.app.App
-import com.geeks.smarthome.base.BaseFragment
+import com.geeks.smarthome.domain.app.App
+import com.geeks.smarthome.domain.base.BaseFragment
 import com.geeks.smarthome.databinding.FragmentCameraBinding
 import com.geeks.smarthome.data.model.camera.CameraEntity
 import dagger.hilt.android.AndroidEntryPoint

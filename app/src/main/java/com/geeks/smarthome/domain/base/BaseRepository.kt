@@ -1,4 +1,4 @@
-package com.geeks.smarthome.base
+package com.geeks.smarthome.domain.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
