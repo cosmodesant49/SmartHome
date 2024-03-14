@@ -3,7 +3,7 @@ package com.geeks.smarthome.data.local_db.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.geeks.smarthome.model.door.DoorEntity
+import com.geeks.smarthome.data.model.door.DoorEntity
 
 @Dao
 interface DoorDao {

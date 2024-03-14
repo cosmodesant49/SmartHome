@@ -1,11 +1,11 @@
-package com.geeks.smarthome.ui.main_activity
+package com.geeks.smarthome.presentor.ui.main_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.geeks.smarthome.databinding.ActivityMainBinding
-import com.geeks.smarthome.ui.camera_activity.CameraFragment
-import com.geeks.smarthome.ui.door_activity.DoorFragment
-import com.geeks.smarthome.ui.main_activity.adapter.ViewPagerAdapter
+import com.geeks.smarthome.presentor.ui.camera_activity.CameraFragment
+import com.geeks.smarthome.presentor.ui.door_activity.DoorFragment
+import com.geeks.smarthome.presentor.ui.main_activity.adapter.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.geeks.smarthome.model.camera
+package com.geeks.smarthome.data.model.camera
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,4 +1,4 @@
-package com.geeks.smarthome.model.door
+package com.geeks.smarthome.data.model.door
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

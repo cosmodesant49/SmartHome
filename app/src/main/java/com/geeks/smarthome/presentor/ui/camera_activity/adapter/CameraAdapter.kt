@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.geeks.smarthome.databinding.ItemCameraBinding
-import com.geeks.smarthome.model.camera.CameraEntity
+import com.geeks.smarthome.data.model.camera.CameraEntity
 
 class CameraAdapter(private val isDoor : Boolean) :
     RecyclerView.Adapter<CameraAdapter.RecyclerViewHolder>() {

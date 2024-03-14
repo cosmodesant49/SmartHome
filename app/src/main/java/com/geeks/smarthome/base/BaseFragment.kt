@@ -18,7 +18,6 @@ abstract class BaseFragment : Fragment() {
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), res.message.toString(), Toast.LENGTH_SHORT)
                         .show()
-                    Log.e("ololo", "stateHandler: ${res.message}")
                 }
 
                 is Resource.Loading -> {}

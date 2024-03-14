@@ -1,4 +1,4 @@
-package com.geeks.smarthome.ui.main_activity.adapter
+package com.geeks.smarthome.presentor.ui.main_activity.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

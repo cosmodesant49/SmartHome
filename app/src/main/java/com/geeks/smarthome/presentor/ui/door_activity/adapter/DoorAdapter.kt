@@ -1,4 +1,4 @@
-package com.geeks.smarthome.ui.door_activity.adapter
+package com.geeks.smarthome.presentor.ui.door_activity.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.geeks.smarthome.databinding.ItemCameraBinding
 import com.geeks.smarthome.databinding.ItemDoorBinding
-import com.geeks.smarthome.model.door.DoorEntity
-import com.geeks.smarthome.model.door.DoorModel
+import com.geeks.smarthome.data.model.door.DoorEntity
+import com.geeks.smarthome.data.model.door.DoorModel
 
 class DoorAdapter(private val isDoor: Boolean) :
     ListAdapter<DoorEntity, DoorViewHolder>(DoorDiffUtil()) {

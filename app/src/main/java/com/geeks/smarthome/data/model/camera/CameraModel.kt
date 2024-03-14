@@ -1,4 +1,4 @@
-package com.geeks.smarthome.model.camera
+package com.geeks.smarthome.data.model.camera
 
 
 data class CameraModel(

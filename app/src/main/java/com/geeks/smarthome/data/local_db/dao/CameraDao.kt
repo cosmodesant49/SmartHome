@@ -3,7 +3,7 @@ package com.geeks.smarthome.data.local_db.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.geeks.smarthome.model.camera.CameraEntity
+import com.geeks.smarthome.data.model.camera.CameraEntity
 
 @Dao
 interface CameraDao {
@@ -12,7 +12,7 @@ interface CameraDao {
     suspend fun getAll(): List<CameraEntity>
 
     @Insert
-    suspend fun insertCamera(camera:CameraEntity)
+    suspend fun insertCamera(camera: CameraEntity)
 
     @Query("DELETE FROM camera")
     suspend fun clearAll()
