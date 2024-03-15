@@ -1,6 +1,7 @@
 package com.geeks.smarthome.data.local_db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.geeks.smarthome.data.model.door.DoorEntity
@@ -16,4 +17,7 @@ interface DoorDao {
 
     @Query("DELETE FROM door")
     suspend fun clearAll()
+
+    @Delete
+    suspend fun deleteDoor(door: DoorEntity)
 }

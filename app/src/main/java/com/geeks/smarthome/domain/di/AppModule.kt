@@ -1,6 +1,12 @@
 package com.geeks.smarthome.domain.di
 
+import android.app.Application
+import android.content.Context
+import androidx.room.Room
 import com.geeks.smarthome.data.api.AppApiService
+import com.geeks.smarthome.data.local_db.AppDatabase
+import com.geeks.smarthome.data.local_db.dao.CameraDao
+import com.geeks.smarthome.data.local_db.dao.DoorDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +21,22 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application.applicationContext
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppDatabase(context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context.applicationContext,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
+    }
 
     @Singleton
     @Provides
@@ -44,10 +66,21 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideLoginInterseptor(): HttpLoggingInterceptor {
+    fun provideLoginInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
+    }
+
+    @Singleton
+    @Provides
+    fun provideDoorDao(appDatabase: AppDatabase): DoorDao {
+        return appDatabase.doorDao()
+    }
+    @Singleton
+    @Provides
+    fun provideCameraDao(appDatabase: AppDatabase): CameraDao {
+        return appDatabase.cameraDao()
     }
 
     @Provides
@@ -56,6 +89,4 @@ object AppModule {
     ): AppApiService {
         return retrofit.create(AppApiService::class.java)
     }
-
-
 }

@@ -3,15 +3,14 @@ package mbk.io.sabrina_hm1_m7.ui.camera.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.geeks.smarthome.databinding.ItemCameraBinding
 import com.geeks.smarthome.data.model.camera.CameraEntity
 
-class CameraAdapter(private val isDoor : Boolean) :
-    RecyclerView.Adapter<CameraAdapter.RecyclerViewHolder>() {
-
-    private var cameraList: List<CameraEntity> = listOf()
+class CameraAdapter(private val isDoor: Boolean) : ListAdapter<CameraEntity, CameraAdapter.RecyclerViewHolder>(CameraDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val binding = ItemCameraBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,14 +18,7 @@ class CameraAdapter(private val isDoor : Boolean) :
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.bind(cameraList[position])
-    }
-
-    override fun getItemCount(): Int = cameraList.size
-
-    fun submitList(list: List<CameraEntity>) {
-        cameraList = list
-        notifyDataSetChanged()
+        holder.bind(getItem(position))
     }
 
     class RecyclerViewHolder(private val binding: ItemCameraBinding, private val isDoor: Boolean) :
@@ -76,3 +68,14 @@ class CameraAdapter(private val isDoor : Boolean) :
         }
     }
 }
+
+class CameraDiffCallback : DiffUtil.ItemCallback<CameraEntity>() {
+    override fun areItemsTheSame(oldItem: CameraEntity, newItem: CameraEntity): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: CameraEntity, newItem: CameraEntity): Boolean {
+        return oldItem == newItem
+    }
+}
+
